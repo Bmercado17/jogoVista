@@ -28,7 +28,7 @@ let app = Vue.createApp({
   methods: {
     attackMonster() {
       this.roundJugado++;
-      let attackVal = getRandomAttackVal(9, 12);
+      let attackVal = getRandomAttackVal(9, 11);
       this.monsterHealth -= attackVal;
       this.attackPlayer();
     },
@@ -42,14 +42,15 @@ let app = Vue.createApp({
       this.monsterHealth -= attackVal;
       this.attackPlayer();
     },
-    healPLayerOne() {
+    healJugador() {
       this.roundJugado++;
-      let healValue = Math.floor(Math.random() * (10 - 18) + 18);
-      if (this.playerOneHealth + healValue > 100) {
+      let healValor = Math.floor(Math.random() * (12 - 9)) + 9;
+      if ((this.playerOneHealth += healValor > 100)) {
         this.playerOneHealth = 100;
       } else {
-        this.playerOneHealth = healValue;
+        this.playerOneHealth += healValor;
       }
+      this.attackPlayer();
     },
   },
 });
