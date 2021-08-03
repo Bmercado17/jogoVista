@@ -54,6 +54,12 @@ let app = Vue.createApp({
   },
 
   methods: {
+    reStartGame() {
+      (this.monsterHealth = 100),
+        (this.playerOneHealth = 100),
+        (this.roundJugado = 0),
+        (this.winner = null);
+    },
     attackMonster() {
       this.roundJugado++;
       let attackVal = getRandomAttackVal(10, 11);
@@ -79,6 +85,9 @@ let app = Vue.createApp({
         this.playerOneHealth += curarHeal;
       }
       this.attackPlayer();
+    },
+    surrender() {
+      this.winner = "monster";
     },
   },
 });

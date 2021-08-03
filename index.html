@@ -36,9 +36,10 @@
         <h3 v-if="winner==='playerOne'">You Won!!</h3>
         <h3 v-else-if="winner==='monster'">You Lost =(</h3>
         <h3 v-else>Draw Draw Draw</h3>
+        <button @click="reStartGame">Restart The Game</button>
       </div>
       <!-- looser winner draw section end-->
-      <section id="controls">
+      <section id="controls" v-else>
         <button @click="attackMonster">ATTACK</button>
         <button :disabled="roundJugado % 3 !==0" @click="tripleAttack">
           SPECIAL ATTACK
