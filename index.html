@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue Basics</title>
+    <title>Vue Project</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
       rel="stylesheet"
@@ -30,12 +30,20 @@
           <div class="healthbar__value" :style="playerBar"></div>
         </div>
       </section>
+      <!-- looser winner draw section start -->
+      <div v-if="winner" class="container">
+        <h2>Game Over</h2>
+        <h3 v-if="winner==='playerOne'">You Won!!</h3>
+        <h3 v-else-if="winner==='monster'">You Lost =(</h3>
+        <h3 v-else>Draw Draw Draw</h3>
+      </div>
+      <!-- looser winner draw section end-->
       <section id="controls">
         <button @click="attackMonster">ATTACK</button>
         <button :disabled="roundJugado % 3 !==0" @click="tripleAttack">
           SPECIAL ATTACK
         </button>
-        <button @click="healJugador">HEAL</button>
+        <button @click="healPlayer">HEAL</button>
         <button>SURRENDER</button>
       </section>
       <section id="log" class="container">
