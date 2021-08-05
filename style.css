@@ -113,9 +113,9 @@ button:disabled {
 }
 
 .log--damage {
-  color: rgb(240, 183, 79);
+  color: rgb(240, 8, 8);
 }
 
 .log--heal {
-  color: green;
+  color: rgb(2, 100, 2);
 }

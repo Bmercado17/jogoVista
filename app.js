@@ -10,6 +10,7 @@ let app = Vue.createApp({
       playerOneHealth: 100,
       roundJugado: 0,
       winner: null,
+      logMessages: [],
     };
   },
   computed: {
@@ -59,35 +60,48 @@ let app = Vue.createApp({
         (this.playerOneHealth = 100),
         (this.roundJugado = 0),
         (this.winner = null);
+      this.logMessages = [];
     },
+
     attackMonster() {
       this.roundJugado++;
       let attackVal = getRandomAttackVal(10, 11);
       this.monsterHealth -= attackVal;
+      this.addLogM("player", "attack", attackVal);
       this.attackPlayer();
     },
     attackPlayer() {
       let attackVal = Math.floor(Math.random() * (7 - 18)) + 18;
+      this.addLogM("monster", "attack", attackVal);
       this.playerOneHealth -= attackVal;
     },
     tripleAttack() {
       this.roundJugado++;
       let attackVal = Math.floor(Math.random() * (15 - 9)) + 9;
       this.monsterHealth -= attackVal;
+      this.addLogM("player", "attack", attackVal);
       this.attackPlayer();
     },
     healPlayer() {
       this.roundJugado++;
-      let curarHeal = Math.floor(Math.random() * (13 - 9)) + 9;
+      let curarHeal = Math.floor(Math.random() * (13 - 16)) + 16;
       if (this.playerOneHealth + curarHeal > 100) {
         this.playerOneHealth = 100;
       } else {
         this.playerOneHealth += curarHeal;
       }
+      this.addLogM("player", "heal", curarHeal);
       this.attackPlayer();
     },
     surrender() {
       this.winner = "monster";
+    },
+    addLogM(who, what, value) {
+      this.logMessages.unshift({
+        actionBy: who,
+        actionType: what,
+        actionVal: value,
+      });
     },
   },
 });

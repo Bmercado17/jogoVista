@@ -39,17 +39,36 @@
         <button @click="reStartGame">Restart The Game</button>
       </div>
       <!-- looser winner draw section end-->
+      <!-- surrender hide toggle start -->
       <section id="controls" v-else>
         <button @click="attackMonster">ATTACK</button>
         <button :disabled="roundJugado % 3 !==0" @click="tripleAttack">
           SPECIAL ATTACK
         </button>
         <button @click="healPlayer">HEAL</button>
-        <button>SURRENDER</button>
+        <button @click="surrender">SURRENDER</button>
       </section>
+      <!-- surrender hide toggle end -->
       <section id="log" class="container">
         <h2>Battle Log</h2>
-        <ul></ul>
+        <ul>
+          <li v-for="logMessage in logMessages">
+            <span
+              :class="{'log--player': logMessage.actionBy === 'player', 'log--monster': logMessage.actionBy === 'monster'}"
+              >{{logMessage.actionBy ==='player' ? 'Player': 'monster'}}</span
+            >
+            <span v-if></span>
+              attacks and deals
+              <span class="log--damage">{{logMessage.actionVal}}</span></span
+            >
+            <span v-else-if="logMessage.actionBy === 'heal'"></span>
+              heals Player for<span class="log--heal"
+                >{{logMessage.actionVal}}</span
+              ></span
+            >
+            
+          </li>
+        </ul>
       </section>
     </div>
     <!-- vue section ends -->
